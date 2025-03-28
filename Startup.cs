@@ -22,6 +22,7 @@ using WebAPIRestaurantManagement.Services.Configuration;
 using WebAPIRestaurantManagement.Services.SupabaseClient;
 using WebAPIRestaurantManagement.Services.CategoriesItems;
 using WebAPIRestaurantManagement.Services.MenuItems;
+using WebAPIRestaurantManagement.Services.Tables;
 
 namespace WebAPIRestaurantManagement
 {
@@ -133,6 +134,7 @@ namespace WebAPIRestaurantManagement
             services.AddScoped<ISupabaseClientService, SupabaseClientService>();
             services.AddScoped<ICategoriesItemsServices, CategoriesItemsService>();
             services.AddScoped<IMenuItemServices, MenuItemServices>();
+            services.AddScoped<ITableServices, TableServices>();
             #endregion
             // Add services to the container.
             services.AddControllers();

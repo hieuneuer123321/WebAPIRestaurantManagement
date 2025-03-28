@@ -210,6 +210,42 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebAPIRestaurantManagement.Controllers.TableController",
+    "Method": "GetCategoriesAsync",
+    "RelativePath": "Table/GetCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "isPaging",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "status",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebAPIRestaurantManagement.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",
