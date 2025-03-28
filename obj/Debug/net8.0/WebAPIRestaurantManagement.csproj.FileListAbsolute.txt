@@ -171,3 +171,5 @@ C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\ob
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\WebAPIRestaurantManagement.genruntimeconfig.cache
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\ref\WebAPIRestaurantManagement.dll
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\WebAPIRestaurantManagement.sourcelink.json
+C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\bin\Debug\net8.0\WebAPIRestaurantManagement.xml
+C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\WebAPIRestaurantManagement.xml

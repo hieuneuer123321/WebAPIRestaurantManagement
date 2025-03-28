@@ -145,7 +145,13 @@ namespace WebAPIRestaurantManagement
             //---------------
             // Make sure swagger UI requires a Bearer token specified
 
-
+            services.AddSwaggerGen(options =>
+            {
+                // Đảm bảo Swagger sử dụng tài liệu XML
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+            });
             // Set the comments path for the Swagger JSON and UI.
 
             //services.AddScoped<IUserClientService, UserClientService>();
@@ -161,6 +167,7 @@ namespace WebAPIRestaurantManagement
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseHangfireDashboard();
+
             //if (env.IsDevelopment())
             //{
             //    app.UseDeveloperExceptionPage();

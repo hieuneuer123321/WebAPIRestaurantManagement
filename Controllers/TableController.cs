@@ -16,9 +16,13 @@ namespace WebAPIRestaurantManagement.Controllers
         {
             _tableServices = tableServices;
         }
-        [HttpGet("GetCategories")]
+        /// <summary>
+        /// Lấy danh sách tất cả các bàn.
+        /// </summary>
+        /// <returns>Danh sách các bàn.</returns>
+        [HttpGet("GetTable")]
         [Authorize] // Đảm bảo rằng người dùng đã đăng nhập
-        public async Task<ActionResult> GetCategoriesAsync(string search = "", int PageNumber = 1, int PageSize = 10, bool isPaging = false, bool? status = null)
+        public async Task<ActionResult> GetTableAsync(string search = "", int PageNumber = 1, int PageSize = 10, bool isPaging = false, bool? status = null)
         {
             ModelDataPageResponse<List<TableResponse>> result = await _tableServices.GetTableAsync(search, PageNumber, PageSize, isPaging, status);
             return Ok(result);

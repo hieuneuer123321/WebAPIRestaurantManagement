@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPIRestaurantManagement</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPIRestaurantManagement.Controllers.CategoriesController.GetItemMenuByMenuId(System.Int32)">
+            <summary>
+            Xoá 1 hoặc nhiều Địa điểm cùng lúc
+            </summary>
+            <param name="locationID">Địa điểm ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPIRestaurantManagement.Controllers.TableController.GetCategoriesAsync(System.String,System.Int32,System.Int32,System.Boolean,System.Nullable{System.Boolean})">
+            <summary>
+            Lấy danh sách tất cả các bàn.
+            </summary>
+            <returns>Danh sách các bàn.</returns>
+        </member>
+    </members>
+</doc>

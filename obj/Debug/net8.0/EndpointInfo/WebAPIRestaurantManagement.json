@@ -346,6 +346,7 @@
         "tags": [
           "Categories"
         ],
+        "summary": "Xoá 1 hoặc nhiều Địa điểm cùng lúc",
         "parameters": [
           {
             "name": "MenuId",
@@ -368,6 +369,7 @@
         "tags": [
           "Table"
         ],
+        "summary": "Lấy danh sách tất cả các bàn.",
         "parameters": [
           {
             "name": "search",
