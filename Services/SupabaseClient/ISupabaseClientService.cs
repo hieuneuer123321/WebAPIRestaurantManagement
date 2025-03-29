@@ -7,6 +7,7 @@ namespace WebAPIRestaurantManagement.Services.SupabaseClient
     public interface ISupabaseClientService
     {
         Supabase.Client GetSupabaseClient();
-        Task<CheckUserResponse> GetUserByUsernameAsync(string username);
+        Task<SP_GetUserByUNameResponse> GetUserByUsernameAsync(string username);
+        Task<List<SP_GetRightByRoleIdResponse>> GetRightByRoleIdAsync(int roleId);
     }
 }

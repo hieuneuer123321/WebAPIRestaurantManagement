@@ -5,6 +5,7 @@ using WebAPIRestaurantManagement.ModelResponses;
 using Supabase.Interfaces;
 using Supabase.Postgrest.Responses;
 using WebAPIRestaurantManagement.Helpers;
+using WebAPIRestaurantManagement.ModelRequests;
 
 namespace WebAPIRestaurantManagement.Services.Tables
 {
@@ -15,14 +16,47 @@ namespace WebAPIRestaurantManagement.Services.Tables
             _clientSupabase = clientSupabase;
         }
 
-        public Task<ModelResponse> AddTableAsync(TableResponse table)
+        public async Task<ModelResponse> AddTableAsync(TableResquests table)
         {
-            throw new NotImplementedException();
+            ModelResponse response = new ModelResponse();
+            ModeledResponse<TableModel> addResponse = await _clientSupabase.From<TableModel>().Insert(new TableModel
+            {
+                Table_Number = table.Table_Number,
+                Table_Status = table.Table_Status,
+                Capacity = table.Capacity,
+            });
+            if (addResponse == null || addResponse.Models.Count <= 0)
+            {
+                response.IsValid = false;
+                response.ValidationMessages.Add("Add Errors");
+            }
+            else
+            {
+                response.IsValid = true;
+                response.ValidationMessages.Add("Add Success!");
+            }
+            return response;
         }
 
-        public Task<ModelResponse> DeleteTableAsync(int tableId)
+        public async Task<ModelResponse> DeleteTableAsync(int tableId)
         {
-            throw new NotImplementedException();
+            ModelResponse response = new ModelResponse();
+            TableModel modelToDelete = new TableModel { Table_id = tableId }; // Tạo mô hình muốn xóa
+            ModeledResponse<TableModel> deleteResponse = await _clientSupabase
+                .From<TableModel>()
+                .Delete(modelToDelete);
+            // await _supabaseClient.From<CategoriesItemsModel>().Where(x => x.CategoryId == categoryId).Delete();
+            if (deleteResponse == null || deleteResponse.Models.Count <= 0)
+            {
+                response.IsValid = false;
+                response.ValidationMessages.Add("Delete Errors");
+            }
+            else
+            {
+                response.IsValid = true;
+                response.ValidationMessages.Add("Delete Success!");
+            }
+            return response;
         }
 
         public async Task<ModelDataPageResponse<List<TableResponse>>> GetTableAsync(string? search, int PageNumber, int PageSize, bool isPaging, bool? status)
@@ -53,14 +87,55 @@ namespace WebAPIRestaurantManagement.Services.Tables
             return result;
         }
 
-        public Task<MenuItemResponse> GetTableByIDAsync(int tableID)
+        public async Task<TableResponse> GetTableByIDAsync(int tableID)
         {
-            throw new NotImplementedException();
+            // Khởi tạo đối tượng response để chứa kết quả
+            TableResponse tableResponse = new TableResponse();
+            // Gọi từ bảng CategoriesItemsModel và sử dụng phương thức Where để lọc theo categoryID
+            ModeledResponse<TableModel> supabaseResponse = await _clientSupabase
+                .From<TableModel>()
+                .Where(c => c.Table_id == tableID)  // Sử dụng điều kiện để lọc theo categoryID
+                .Get();
+            // Kiểm tra xem có dữ liệu không
+            if (supabaseResponse.Models != null && supabaseResponse.Models.Any())
+            {
+                // Chuyển kết quả từ SupabaseResponse thành List và gán cho response
+                TableModel Items = supabaseResponse.Models.FirstOrDefault();
+                TableResponse resultItemResponse = new TableResponse
+                {
+                    Table_id = Items.Table_id,
+                    Table_Number = Items.Table_Number,
+                    Table_Status = Items.Table_Status,
+                    Capacity = Items.Capacity,
+                };
+                // Gán dữ liệu vào categoriesResponse (Giả sử CategoriesResponse có một danh sách CategoriesItems)
+                tableResponse = resultItemResponse;
+            }
+            // Trả về response
+            return tableResponse;
         }
 
-        public Task<ModelResponse> UpdateTableAsync(TableResponse table)
+        public async Task<ModelResponse> UpdateTableAsync(TableResponse table)
         {
-            throw new NotImplementedException();
+            ModelResponse response = new ModelResponse();
+            ModeledResponse<TableModel> updateResponse = await _clientSupabase
+                              .From<TableModel>()
+                              .Where(x => x.Table_id == table.Table_id)
+                              .Set(x => x.Table_Number, table.Table_Number)
+                              .Set(x => x.Capacity, table.Capacity)
+                              .Set(x => x.Table_Status, table.Table_Status)
+                              .Update();
+            if (updateResponse == null || updateResponse.Models.Count <= 0)
+            {
+                response.IsValid = false;
+                response.ValidationMessages.Add("Update Errors. Category is empty");
+            }
+            else
+            {
+                response.IsValid = true;
+                response.ValidationMessages.Add("Update Success!");
+            }
+            return response;
         }
     }
 }

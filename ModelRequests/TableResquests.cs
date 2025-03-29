@@ -1,8 +1,7 @@
-﻿namespace WebAPIRestaurantManagement.ModelResponses
+﻿namespace WebAPIRestaurantManagement.ModelRequests
 {
-    public class TableResponse
+    public class TableResquests
     {
-        public int Table_id { get; set; }
         public string Table_Number { get; set; }
         public int Capacity { get; set; }
         public bool Table_Status { get; set; }

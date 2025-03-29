@@ -11,7 +11,7 @@ namespace WebAPIRestaurantManagement.Models
         [Column("table_number")]
         public string Table_Number { get; set; }
         [Column("capacity")]
-        public string Capacity { get; set; }
+        public int Capacity { get; set; }
         [Column("status")]
         public bool Table_Status { get; set; }
     }

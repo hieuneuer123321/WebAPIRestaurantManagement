@@ -72,7 +72,7 @@ namespace WebAPIRestaurantManagement.Controllers
             return result.IsValid ? Ok(result) : BadRequest(result);
         }
         /// <summary>
-        /// Xoá 1 hoặc nhiều Địa điểm cùng lúc
+        /// Lấy 1 món ăn
         /// </summary>
         /// <param name="locationID">Địa điểm ID</param>
         /// <returns></returns>

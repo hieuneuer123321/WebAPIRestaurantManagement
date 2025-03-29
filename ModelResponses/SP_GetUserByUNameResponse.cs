@@ -1,12 +1,12 @@
 ﻿namespace WebAPIRestaurantManagement.ModelResponses
 {
     
-    public class CheckUserResponse
+    public class SP_GetUserByUNameResponse
     {
         public long Uid { get; set; }      // Trường UID kiểu INT8 (long)
         public string NameUser { get; set; } // Trường NameUser kiểu varchar
         public string EmailUser { get; set; } // Trường EmailUser kiểu varchar
-        public CheckUserResponse(long uid, string nameUser, string emailUser, string passUser)
+        public SP_GetUserByUNameResponse(long uid, string nameUser, string emailUser, string passUser)
         {
             Uid = uid;
             NameUser = nameUser;
@@ -14,6 +14,6 @@
         }
 
         // Hàm mặc định không tham số
-        public CheckUserResponse() { }
+        public SP_GetUserByUNameResponse() { }
     }
 }

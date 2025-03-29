@@ -210,9 +210,73 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebAPIRestaurantManagement.Controllers.RolesRightsController",
+    "Method": "GetRightByRole",
+    "RelativePath": "RolesRights/GetRightByRole",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPIRestaurantManagement.Controllers.RolesRightsController",
+    "Method": "GetRoles",
+    "RelativePath": "RolesRights/GetRoles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebAPIRestaurantManagement.Controllers.TableController",
-    "Method": "GetCategoriesAsync",
-    "RelativePath": "Table/GetCategories",
+    "Method": "AddTable",
+    "RelativePath": "Table/AddTable",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WebAPIRestaurantManagement.ModelRequests.TableResquests",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPIRestaurantManagement.Controllers.TableController",
+    "Method": "DeleteTable",
+    "RelativePath": "Table/DeleteTable",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPIRestaurantManagement.Controllers.TableController",
+    "Method": "GetTableAsync",
+    "RelativePath": "Table/GetTable",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -241,6 +305,38 @@
         "Name": "status",
         "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPIRestaurantManagement.Controllers.TableController",
+    "Method": "GetTableById",
+    "RelativePath": "Table/GetTableById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TableId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPIRestaurantManagement.Controllers.TableController",
+    "Method": "UpdateTable",
+    "RelativePath": "Table/UpdateTable",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WebAPIRestaurantManagement.ModelResponses.TableResponse",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

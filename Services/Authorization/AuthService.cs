@@ -63,7 +63,7 @@ namespace WebAPIRestaurantManagement.Services.Authorization
         {
             Response<SupabaseResponse> result = new Swagger.Response<SupabaseResponse>();
             /// // Bước 1: Tìm user trong bảng Users bằng username
-            CheckUserResponse user = await _supabaseClientService.GetUserByUsernameAsync(loginRequest.UserName);
+            SP_GetUserByUNameResponse user = await _supabaseClientService.GetUserByUsernameAsync(loginRequest.UserName);
             if (user == null)
             {
                 result.Succeeded = false;

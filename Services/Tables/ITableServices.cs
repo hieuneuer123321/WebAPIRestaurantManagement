@@ -9,8 +9,8 @@ namespace WebAPIRestaurantManagement.Services.Tables
     {
         Task<ModelDataPageResponse<List<TableResponse>>> GetTableAsync(string? search, int PageNumber, int PageSize, bool isPaging, bool? status);
         Task<ModelResponse> UpdateTableAsync(TableResponse table);
-        Task<ModelResponse> AddTableAsync(TableResponse table);
+        Task<ModelResponse> AddTableAsync(TableResquests table);
         Task<ModelResponse> DeleteTableAsync(int tableId);
-        Task<MenuItemResponse> GetTableByIDAsync(int tableID);
+        Task<TableResponse> GetTableByIDAsync(int tableID);
     }
 }

@@ -19,39 +19,85 @@ namespace WebAPIRestaurantManagement.Services.SupabaseClient
             return _supabaseClient;
         }
         // Hàm gọi stored procedure getUserByUsername
-        public async Task<CheckUserResponse> GetUserByUsernameAsync(string username)
+        public async Task<SP_GetUserByUNameResponse> GetUserByUsernameAsync(string username)
         {
-            // Gọi stored procedure getUserByUsername từ Supabase
-            var response = await _supabaseClient
+            try
+            {
+                var response = await _supabaseClient
                 .Rpc(StoreProcedureSupabase.GetUserByUsername, new { uname = username });
 
-            // Kiểm tra mã trạng thái của phản hồi
-            if (response.ResponseMessage?.IsSuccessStatusCode == true)
-            {
-                // Nếu phản hồi thành công, lấy dữ liệu từ Content
-                if (response.Content != null || response.Content != "[]")
+                // Kiểm tra mã trạng thái của phản hồi
+                if (response.ResponseMessage?.IsSuccessStatusCode == true)
                 {
-                    // Giả sử Content là JSON, hãy deserialize nó thành kiểu User
-                    //var user = JsonConvert.DeserializeObject<User>(response.Content);
-                    List<CheckUserResponse> users = JsonConvert.DeserializeObject<List<CheckUserResponse>>(response.Content);
-                    if (users.Count > 0) {
-                        return users[0];
-                    }
-                    else
+                    // Nếu phản hồi thành công, lấy dữ liệu từ Content
+                    if (response.Content != null || response.Content != "[]")
                     {
-                        return null;
+                        // Giả sử Content là JSON, hãy deserialize nó thành kiểu User
+                        //var user = JsonConvert.DeserializeObject<User>(response.Content);
+                        List<SP_GetUserByUNameResponse> users = JsonConvert.DeserializeObject<List<SP_GetUserByUNameResponse>>(response.Content);
+                        if (users.Count > 0)
+                        {
+                            return users[0];
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
                     }
-                    
                 }
-            }
-            else
-            {
-                // Nếu không thành công, in ra thông báo lỗi
+                else
+                {
+                    // Nếu không thành công, in ra thông báo lỗi
+                    return null;
+                }
+                // Nếu có lỗi hoặc không có dữ liệu
                 return null;
             }
-            // Nếu có lỗi hoặc không có dữ liệu
-            return null;
+            catch (Exception ex) {
+                return null;
+            }
+            // Gọi stored procedure getUserByUsername từ Supabase  
         }
+        public async Task<List<SP_GetRightByRoleIdResponse>> GetRightByRoleIdAsync(int roleIdResquest)
+        {
+            try
+            {
+                // Gọi stored procedure getUserByUsername từ Supabase
+                var response = await _supabaseClient
+                    .Rpc(StoreProcedureSupabase.GetRightByRoleId, new { roleid = roleIdResquest });
 
+                // Kiểm tra mã trạng thái của phản hồi
+                if (response.ResponseMessage?.IsSuccessStatusCode == true)
+                {
+                    // Nếu phản hồi thành công, lấy dữ liệu từ Content
+                    if (response.Content != null || response.Content != "[]")
+                    {
+                        // Giả sử Content là JSON, hãy deserialize nó thành kiểu User
+                        //var user = JsonConvert.DeserializeObject<User>(response.Content);
+                        List<SP_GetRightByRoleIdResponse> rights = JsonConvert.DeserializeObject<List<SP_GetRightByRoleIdResponse>>(response.Content);
+                        if (rights.Count > 0)
+                        {
+                            return rights;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
+                    }
+                }
+                else
+                {
+                    // Nếu không thành công, in ra thông báo lỗi
+                    return null;
+                }
+                // Nếu có lỗi hoặc không có dữ liệu
+                return null;
+            }
+            catch (Exception ex) {
+                return null;
+            }  
+        }
     }
 }

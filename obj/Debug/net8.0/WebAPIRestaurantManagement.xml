@@ -6,16 +6,28 @@
     <members>
         <member name="M:WebAPIRestaurantManagement.Controllers.CategoriesController.GetItemMenuByMenuId(System.Int32)">
             <summary>
-            Xoá 1 hoặc nhiều Địa điểm cùng lúc
+            Lấy 1 món ăn
             </summary>
             <param name="locationID">Địa điểm ID</param>
             <returns></returns>
         </member>
-        <member name="M:WebAPIRestaurantManagement.Controllers.TableController.GetCategoriesAsync(System.String,System.Int32,System.Int32,System.Boolean,System.Nullable{System.Boolean})">
+        <member name="M:WebAPIRestaurantManagement.Controllers.TableController.GetTableAsync(System.String,System.Int32,System.Int32,System.Boolean,System.Nullable{System.Boolean})">
             <summary>
-            Lấy danh sách tất cả các bàn.
+            Lấy ds bàn
             </summary>
-            <returns>Danh sách các bàn.</returns>
+            <param name="search"></param>
+            <param name="PageNumber"></param>
+            <param name="PageSize"></param>
+            <param name="isPaging"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPIRestaurantManagement.Controllers.TableController.GetTableById(System.Int32)">
+            <summary>
+            Lấy thông tin 1 bàn
+            </summary>
+            <param name="locationID">Địa điểm ID</param>
+            <returns></returns>
         </member>
     </members>
 </doc>

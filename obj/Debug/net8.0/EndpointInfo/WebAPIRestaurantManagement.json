@@ -346,7 +346,7 @@
         "tags": [
           "Categories"
         ],
-        "summary": "Xoá 1 hoặc nhiều Địa điểm cùng lúc",
+        "summary": "Lấy 1 món ăn",
         "parameters": [
           {
             "name": "MenuId",
@@ -364,12 +364,11 @@
         }
       }
     },
-    "/Table/GetCategories": {
+    "/RolesRights/GetRoles": {
       "get": {
         "tags": [
-          "Table"
+          "RolesRights"
         ],
-        "summary": "Lấy danh sách tất cả các bàn.",
         "parameters": [
           {
             "name": "search",
@@ -378,10 +377,57 @@
               "type": "string",
               "default": ""
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/RolesRights/GetRightByRole": {
+      "get": {
+        "tags": [
+          "RolesRights"
+        ],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Table/GetTable": {
+      "get": {
+        "tags": [
+          "Table"
+        ],
+        "summary": "Lấy ds bàn",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
           },
           {
             "name": "PageNumber",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -391,6 +437,7 @@
           {
             "name": "PageSize",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -400,6 +447,7 @@
           {
             "name": "isPaging",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "boolean",
               "default": false
@@ -408,11 +456,119 @@
           {
             "name": "status",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "boolean"
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Table/GetTableById": {
+      "get": {
+        "tags": [
+          "Table"
+        ],
+        "summary": "Lấy thông tin 1 bàn",
+        "parameters": [
+          {
+            "name": "TableId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Table/UpdateTable": {
+      "post": {
+        "tags": [
+          "Table"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TableResponse"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TableResponse"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TableResponse"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Table/DeleteTable": {
+      "post": {
+        "tags": [
+          "Table"
+        ],
+        "parameters": [
+          {
+            "name": "requestID",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Table/AddTable": {
+      "post": {
+        "tags": [
+          "Table"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TableResquests"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TableResquests"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TableResquests"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -508,6 +664,44 @@
           "category_id": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TableResponse": {
+        "type": "object",
+        "properties": {
+          "table_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "table_Number": {
+            "type": "string",
+            "nullable": true
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "table_Status": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TableResquests": {
+        "type": "object",
+        "properties": {
+          "table_Number": {
+            "type": "string",
+            "nullable": true
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "table_Status": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
