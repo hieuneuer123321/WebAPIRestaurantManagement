@@ -11,7 +11,8 @@ namespace WebAPIRestaurantManagement.Services.Authorization
     public interface IAuthService
     {
         Task<Response<SupabaseResponse>> LoginJWTAsync(LoginSupabaseRequest loginRequest);
-        Task<Response<SupabaseResponse>> Register(UsersModel usersModel);
+        Task<Response<SupabaseUserResponse>> Register(UserRegisterResquest userLogin);
         Task<Response<SupabaseResponse>> ReloadByRefreshToken(string refreshToken);
+        Task<ModelResponse> TestAddUser();
     }
 }

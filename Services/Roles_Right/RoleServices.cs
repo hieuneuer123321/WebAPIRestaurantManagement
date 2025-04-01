@@ -60,9 +60,17 @@ namespace WebAPIRestaurantManagement.Services.Roles
             return result;
         }
 
-        public Task<TableResponse> GetRolesByIDAsync(int roleID)
+        public async Task<RolesResponse> GetRolesByIDAsync(int roleID)
         {
-            throw new NotImplementedException();
+            ModeledResponse<RolesModel> SupabaseResponse = await _clientSupabase.From<RolesModel>().Where(u => u.RoleId == roleID).Get();
+            RolesModel rolesModel = SupabaseResponse.Models.FirstOrDefault();
+            RolesResponse roles = new RolesResponse()
+            {
+                RoleId = rolesModel.RoleId,
+                RoleName = rolesModel.RoleName, 
+                Description = rolesModel.Description,
+            };
+            return roles;
         }
 
         public Task<ModelResponse> UpdateRolesAsync(RolesResponse role)

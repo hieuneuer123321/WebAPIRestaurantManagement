@@ -5,13 +5,13 @@ namespace WebAPIRestaurantManagement.ModelResponses
     public class SupabaseUserResponse
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty("email")]
         public string Email { get; set; }
 
         [JsonProperty("role")]
-        public string Role { get; set; }
+        public RolesResponse Role { get; set; }
 
         [JsonProperty("user_metadata")]
         public object UserMetadata { get; set; }
@@ -24,5 +24,8 @@ namespace WebAPIRestaurantManagement.ModelResponses
 
         [JsonProperty("updated_at")]
         public string UpdatedAt { get; set; }
+        //
+        public List<SP_GetRightByUidResponse> Userrights { get; set; }
+
     }
 }

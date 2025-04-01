@@ -11,6 +11,6 @@ namespace WebAPIRestaurantManagement.Services.Roles
         Task<ModelResponse> UpdateRolesAsync(RolesResponse role);
         Task<ModelResponse> AddRolesAsync(RolesResponse role);
         Task<ModelResponse> DeleteRolesAsync(int roleID);
-        Task<TableResponse> GetRolesByIDAsync(int roleID);
+        Task<RolesResponse> GetRolesByIDAsync(int roleID);
     }
 }

@@ -99,5 +99,46 @@ namespace WebAPIRestaurantManagement.Services.SupabaseClient
                 return null;
             }  
         }
+        public async Task<List<SP_GetRightByUidResponse>> GetRightByUIdAsync(Guid userIdResquest)
+        {
+            try
+            {
+                // Gọi stored procedure getUserByUsername từ Supabase
+                var response = await _supabaseClient
+                    .Rpc(StoreProcedureSupabase.GetRightByUId, new { uid = userIdResquest });
+
+                // Kiểm tra mã trạng thái của phản hồi
+                if (response.ResponseMessage?.IsSuccessStatusCode == true)
+                {
+                    // Nếu phản hồi thành công, lấy dữ liệu từ Content
+                    if (response.Content != null || response.Content != "[]")
+                    {
+                        // Giả sử Content là JSON, hãy deserialize nó thành kiểu User
+                        //var user = JsonConvert.DeserializeObject<User>(response.Content);
+                        List<SP_GetRightByUidResponse> rights = JsonConvert.DeserializeObject<List<SP_GetRightByUidResponse>>(response.Content);
+                        if (rights.Count > 0)
+                        {
+                            return rights;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
+                    }
+                }
+                else
+                {
+                    // Nếu không thành công, in ra thông báo lỗi
+                    return null;
+                }
+                // Nếu có lỗi hoặc không có dữ liệu
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

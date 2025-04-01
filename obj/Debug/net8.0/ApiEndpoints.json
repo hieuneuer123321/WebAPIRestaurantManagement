@@ -16,6 +16,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebAPIRestaurantManagement.Controllers.AuthorizationController",
+    "Method": "RegisterAuthorizationJWT",
+    "RelativePath": "Authorization/RegisterAuthorizationJWT",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WebAPIRestaurantManagement.ModelRequests.UserRegisterResquest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebAPIRestaurantManagement.Controllers.AuthorizedController",
     "Method": "GetSecureData",
     "RelativePath": "Authorized/Check Authorized",
@@ -361,5 +377,21 @@
       }
     ],
     "EndpointName": "GetWeatherForecast"
+  },
+  {
+    "ContainingType": "WebAPIRestaurantManagement.Controllers.WebhookController",
+    "Method": "HandleEmailConfirmed",
+    "RelativePath": "Webhook/email-confirmed",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eventData",
+        "Type": "WebAPIRestaurantManagement.Controllers.WebhookController\u002BSupabaseEvent",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

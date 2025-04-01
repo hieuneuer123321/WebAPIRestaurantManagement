@@ -3,29 +3,27 @@ using Supabase.Postgrest.Models;
 
 namespace WebAPIRestaurantManagement.Models
 {
-    [Table("accounts")]
+    [Table("Users")]
     public class UsersModel : BaseModel
     {
-        [PrimaryKey("account_id", false)]
-        public int account_id { get; set; }
+        [PrimaryKey("user_id", false)]
+        public Guid User_id { get; set; }
         [Column("username")]
-        public string username { get; set; }
+        public string Username { get; set; }
         [Column("email")]
-        public string email { get; set; }
-        [Column("date_create")]
-        public string date_create { get; set; }
-        [Column("password")]
-        public string password { get; set; }
-        [Column("account_type")]
-        public int account_type { get; set; }
+        public string Email { get; set; }
+        [Column("create_date")]
+        public DateOnly Date_create { get; set; }
+        [Column("role_id")]
+        public int Role_id { get; set; }
         [Column("status")]
-        public bool status { get; set; }
-        [Column("student_id")]
-        public int? student_id { get; set; }
-        [Column("teacher_id")]
-        public int? teacher_id { get; set; }
-        [Column("userId_auth")]
-        public string userId_auth { get; set; }
+        public bool Status { get; set; }
+        [Column("phone")]
+        public string? Phone { get; set; }
+        [Column("full_name")]
+        public string? FullName { get; set; }
+        [Column("user_number")]
+        public string? User_Number { get; set; }
 
     }
 }

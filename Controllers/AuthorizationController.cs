@@ -28,7 +28,18 @@ namespace WebAPIRestaurantManagement.Controllers
             Response<SupabaseResponse> result = await _authorizationService.LoginJWTAsync(request);
             return Ok(result);
         }
-
-       
+        // POST api/<AuthorizationController>
+        [HttpPost("RegisterAuthorizationJWT")]
+        public async Task<ActionResult> RegisterAuthorizationJWT([FromBody] ModelRequests.UserRegisterResquest request)
+        {
+            Response<SupabaseUserResponse> result = await _authorizationService.Register(request);
+            return Ok(result);
+        }
+        //[HttpPost("TestAddRecord")]
+        //public async Task<ActionResult> TestAddRecord()
+        //{
+        //    ModelResponse result = await _authorizationService.TestAddUser();
+        //    return result.IsValid ? Ok(result) : BadRequest(result);
+        //}
     }
 }
