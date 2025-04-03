@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPIRestaurantManagement</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPIRestaurantManagement.Controllers.CategoriesController.GetItemMenuByMenuId(System.Int32)">
+            <summary>
+            Lấy 1 món ăn
+            </summary>
+            <param name="locationID">Địa điểm ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPIRestaurantManagement.Controllers.TableController.GetTableAsync(System.String,System.Int32,System.Int32,System.Boolean,System.Nullable{System.Boolean})">
+            <summary>
+            Lấy ds bàn
+            </summary>
+            <param name="search"></param>
+            <param name="PageNumber"></param>
+            <param name="PageSize"></param>
+            <param name="isPaging"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPIRestaurantManagement.Controllers.TableController.GetTableById(System.Int32)">
+            <summary>
+            Lấy thông tin 1 bàn
+            </summary>
+            <param name="locationID">Địa điểm ID</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

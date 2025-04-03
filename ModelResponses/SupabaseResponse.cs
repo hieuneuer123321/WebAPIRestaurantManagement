@@ -18,5 +18,6 @@ namespace WebAPIRestaurantManagement.ModelResponses
 
         [JsonProperty("user")]
         public SupabaseUserResponse User { get; set; }
+        public string? MsgError { get; set; }
     }
 }

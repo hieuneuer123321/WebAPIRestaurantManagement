@@ -359,7 +359,7 @@
   },
   {
     "ContainingType": "WebAPIRestaurantManagement.Controllers.WeatherForecastController",
-    "Method": "Get",
+    "Method": "GetAsync",
     "RelativePath": "WeatherForecast",
     "HttpMethod": "GET",
     "IsController": true,
@@ -377,21 +377,5 @@
       }
     ],
     "EndpointName": "GetWeatherForecast"
-  },
-  {
-    "ContainingType": "WebAPIRestaurantManagement.Controllers.WebhookController",
-    "Method": "HandleEmailConfirmed",
-    "RelativePath": "Webhook/email-confirmed",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "eventData",
-        "Type": "WebAPIRestaurantManagement.Controllers.WebhookController\u002BSupabaseEvent",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
   }
 ]

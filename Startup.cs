@@ -25,6 +25,7 @@ using WebAPIRestaurantManagement.Services.MenuItems;
 using WebAPIRestaurantManagement.Services.Tables;
 using WebAPIRestaurantManagement.Services.Roles;
 
+
 namespace WebAPIRestaurantManagement
 {
     public class Startup
@@ -60,7 +61,11 @@ namespace WebAPIRestaurantManagement
             ///// Connect DataBase Supabase
             ///
             // Tạo Supabase client cho dự án 1
-            var supabaseClient = new Client(
+            //services.AddSingleton<Client>(provider => CreateSupabaseClient("RestaurantManagement"));
+            //services.AddSingleton<Client>(provider => CreateSupabaseClient("auth"));
+            services.AddScoped<Client>(provider =>
+            {
+                return new Client(
                     Configuration["Authentication:SUPABASE_URL"],  // Thay bằng URL của bạn
                     Configuration["Authentication:SUPABASE_KEY"],  // API Key của bạn
                     new SupabaseOptions
@@ -69,10 +74,33 @@ namespace WebAPIRestaurantManagement
                         AutoConnectRealtime = true,
                         Schema = "RestaurantManagement"
                     });
+            });
 
-            //// Thêm vào DI container
-            services.AddSingleton(supabaseClient);
+            // Đăng ký Supabase Client cho schema 'restaurant_management'
            
+            //var supabaseClient = new Client(
+            //        Configuration["Authentication:SUPABASE_URL"],  // Thay bằng URL của bạn
+            //        Configuration["Authentication:SUPABASE_KEY"],  // API Key của bạn
+            //        new SupabaseOptions
+            //        {
+            //            AutoRefreshToken = true,
+            //            AutoConnectRealtime = true,
+            //            Schema = "RestaurantManagement"
+            //        });
+            //var authSupabaseClient = new Client(
+            //       Configuration["Authentication:SUPABASE_URL"],  // Thay bằng URL của bạn
+            //       Configuration["Authentication:SUPABASE_KEY"],  // API Key của bạn
+            //       new SupabaseOptions
+            //       {
+            //           AutoRefreshToken = true,
+            //           AutoConnectRealtime = true,
+            //           Schema = "auth"
+            //       });
+
+            ////// Thêm vào DI container
+            //services.AddSingleton(supabaseClient);
+            //services.AddSingleton(authSupabaseClient);
+
             //services.AddScoped<Supabase.Client>(_ =>
             //    new Supabase.Client(
             //        Configuration["Authentication:SUPABASE_URL"],  // Thay bằng URL của bạn
@@ -139,6 +167,7 @@ namespace WebAPIRestaurantManagement
             services.AddScoped<IRoleServices, RoleServices>();
             #endregion
             // Add services to the container.
+            
             services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
@@ -223,6 +252,18 @@ namespace WebAPIRestaurantManagement
             cultureInfo.DateTimeFormat = dateTimeFormat;
             CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
             CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+        }
+        private Client CreateSupabaseClient(string schema)
+        {
+            return new Client(
+                Configuration["Authentication:SUPABASE_URL"],
+                Configuration["Authentication:SUPABASE_KEY"],
+                new SupabaseOptions
+                {
+                    AutoRefreshToken = true,
+                    AutoConnectRealtime = true,
+                    Schema = schema
+                });
         }
     }
 }

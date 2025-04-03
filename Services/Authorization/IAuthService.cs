@@ -13,6 +13,6 @@ namespace WebAPIRestaurantManagement.Services.Authorization
         Task<Response<SupabaseResponse>> LoginJWTAsync(LoginSupabaseRequest loginRequest);
         Task<Response<SupabaseUserResponse>> Register(UserRegisterResquest userLogin);
         Task<Response<SupabaseResponse>> ReloadByRefreshToken(string refreshToken);
-        Task<ModelResponse> TestAddUser();
+        Task<bool> VerifyEmailAsync(Guid idUser);
     }
 }

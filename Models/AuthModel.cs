@@ -10,9 +10,6 @@ namespace WebAPIRestaurantManagement.Models
         public int auth_id { get; set; }
         [Column("email")]
         public string auth_email { get; set; }
-        [Column("encrypted_password")]
-        public string encrypted_password { get; set; }
-
-       
+      
     }
 }

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Supabase.Gotrue;
 using Supabase.Interfaces;
 using Supabase.Postgrest.Responses;
 using System;
@@ -9,6 +11,7 @@ using System.Net.Http;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
+using WebAPIRestaurantManagement.Helpers;
 using WebAPIRestaurantManagement.ModelRequests;
 using WebAPIRestaurantManagement.ModelResponses;
 using WebAPIRestaurantManagement.Models;
@@ -28,27 +31,31 @@ namespace WebAPIRestaurantManagement.Services.Authorization
         private readonly ISupabaseClientService _supabaseClientService;
         private readonly IRoleServices _roleServices;
         private readonly Supabase.Client _supabaseClient;
+       
         private readonly WebAPIRestaurantManagement.Services.Configuration.IConfigurationService  _configurationService;
         public AuthService(HttpClient httpClient, ISupabaseClientService supabaseClientService, WebAPIRestaurantManagement.Services.Configuration.IConfigurationService configurationService, Supabase.Client supabaseClient, IRoleServices roleServices)
         {
             _httpClient = httpClient;
             _supabaseClientService = supabaseClientService;
             _configurationService = configurationService;
-            _supabaseClient = supabaseClient;
+            _supabaseClient = supabaseClient ?? throw new ArgumentNullException(nameof(supabaseClient)); ;
             _roleServices = roleServices;
+           
+
         }
         // Đăng nhập vào Supabase bằng email và password
-        private async Task<SupabaseResponse> AuthenticateWithSupabase(string email, string password, int rolesResponse, string uid)
+        private async Task<SupabaseResponse> AuthenticateWithSupabase(string email, string password, int rolesResponse, Guid uid)
         {
+            SupabaseResponse userInfo = new SupabaseResponse();
             try
             {
                 Supabase.Gotrue.Session responseAuth = await _supabaseClient.Auth.SignIn(email, password);
                 if (responseAuth != null)
                 {
+                    await VerifyEmailAsync(Guid.Parse(responseAuth.User.Id));
                     RolesResponse roleUser = await _roleServices.GetRolesByIDAsync(rolesResponse);
                     List<SP_GetRightByUidResponse> rights_SP= await _supabaseClientService.GetRightByUIdAsync(Guid.Parse(responseAuth.User.Id));
-                   
-                    SupabaseResponse userInfo = new SupabaseResponse
+                    userInfo = new SupabaseResponse
                     {
                         AccessToken = responseAuth.AccessToken,
                         ExpiresIn = responseAuth.ExpiresIn,
@@ -61,12 +68,19 @@ namespace WebAPIRestaurantManagement.Services.Authorization
                             Userrights = rights_SP
                         },
                     };
-                    return userInfo;
-                }else return null;
+                }
             }
             catch (Exception ex) {
-                return null;
+                // Kiểm tra lỗi từ GotrueException
+                //{ "code":400,"error_code":"email_not_confirmed","msg":"Email not confirmed"}
+                //{ "code":400,"error_code":"invalid_credentials","msg":"Invalid login credentials"}
+                // Parse chuỗi JSON
+                JObject jsonObject = JObject.Parse(ex.Message);
+                // Lấy giá trị của "msg"
+                string msg = jsonObject["msg"]?.ToString();
+                userInfo.MsgError = msg;
             }
+            return userInfo;
         }
         public async Task<Response<SupabaseResponse>> LoginJWTAsync(LoginSupabaseRequest loginRequest)
         {
@@ -74,6 +88,7 @@ namespace WebAPIRestaurantManagement.Services.Authorization
             List<RightResponse> rightsUser = new List<RightResponse> { };
             /// // Bước 1: Tìm user trong bảng Users bằng username
             SP_GetUserByUNameResponse user = await _supabaseClientService.GetUserByUsernameAsync(loginRequest.UserName);
+           
             if (user == null)
             {
                 result.Succeeded = false;
@@ -82,17 +97,18 @@ namespace WebAPIRestaurantManagement.Services.Authorization
                 result.Data = null;
                 return result;
             }
-             
+
             // Bước 2: Đăng nhập với Supabase bằng email và password
-            SupabaseResponse account = await AuthenticateWithSupabase(user.EmailUser, loginRequest.Password, user.rolesUser, user.Uid);
-            if (account == null)
+            SupabaseResponse account = await AuthenticateWithSupabase(user.EmailUser, loginRequest.Password, user.rolesUser,user.Uid);
+            if (!string.IsNullOrWhiteSpace(account.MsgError))
             {
                 result.Succeeded = false;
                 result.Errors = [];
-                result.Message = "Invalid password.";
+                result.Message = account.MsgError;
                 result.Data = null;
                 return result;
             }
+           
             result.Succeeded = true;
             result.Errors = [];
             result.Message = "Login Success!";
@@ -153,7 +169,6 @@ namespace WebAPIRestaurantManagement.Services.Authorization
                             }
                         }
                     }
-                         
                 }
                 return result;
             }
@@ -167,35 +182,22 @@ namespace WebAPIRestaurantManagement.Services.Authorization
         {
             throw new NotImplementedException();
         }
-        public async Task<ModelResponse> TestAddUser()
-        {
-
-            ModelResponse response = new ModelResponse();
-            UsersModel userModel = new UsersModel()
+        public async Task<bool> VerifyEmailAsync(Guid idUser) {
+            ModeledResponse<UsersModel> updateResponse = await _supabaseClient
+                              .From<UsersModel>()
+                              .Where(x => x.User_id == idUser && x.email_confirmed == false)
+                              .Set(x => x.email_confirmed, true)
+                              .Update();
+            if (updateResponse == null || updateResponse.Models.Count <= 0)
             {
-                Email = "hieuneuer0022000@gmail.com",
-                FullName = "hieuneuer1111",
-                Phone = "8573625496",
-                Role_id = 1,
-                Status = true,
-                User_Number = "097645",
-                Username = "hieuneuer1111",
-                User_id = Guid.Parse("70db78df-18d0-47ee-bf90-574424e59d76"),
-                //"70db78df-18d0-47ee-bf90-574424e59d76"
-            };
-            ModeledResponse<UsersModel> addResponse = await _supabaseClient.From<UsersModel>().Insert(userModel);
-            if (addResponse == null || addResponse.Models.Count <= 0)
-            {
-                response.IsValid = false;
-                response.ValidationMessages.Add("Add Errors");
-
+                return false;
             }
             else
             {
-                response.IsValid = true;
-                response.ValidationMessages.Add("Add Success!");
+                return true;
             }
-            return response;
+           
         }
+        
     }
 }

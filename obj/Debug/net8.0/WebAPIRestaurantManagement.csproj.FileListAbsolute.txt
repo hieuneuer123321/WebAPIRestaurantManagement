@@ -163,7 +163,6 @@ C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\ob
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.WebAPIRestaurantManagement.props
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.WebAPIRestaurantManagement.props
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\WebAPIRe.9ABBEAD3.Up2Date
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\WebAPIRestaurantManagement.dll
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\refint\WebAPIRestaurantManagement.dll
@@ -173,3 +172,4 @@ C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\ob
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\WebAPIRestaurantManagement.sourcelink.json
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\bin\Debug\net8.0\WebAPIRestaurantManagement.xml
 C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\WebAPIRestaurantManagement.xml
+C:\Users\vit002\Desktop\WebAPIRestaurantManagement\WebAPIRestaurantManagement\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -24,6 +24,7 @@ namespace WebAPIRestaurantManagement.Models
         public string? FullName { get; set; }
         [Column("user_number")]
         public string? User_Number { get; set; }
-
+        [Column("email_confirmed")]
+        public bool? email_confirmed { get; set; }
     }
 }

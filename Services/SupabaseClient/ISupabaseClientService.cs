@@ -10,5 +10,7 @@ namespace WebAPIRestaurantManagement.Services.SupabaseClient
         Task<SP_GetUserByUNameResponse> GetUserByUsernameAsync(string username);
         Task<List<SP_GetRightByRoleIdResponse>> GetRightByRoleIdAsync(int roleId);
         Task<List<SP_GetRightByUidResponse>> GetRightByUIdAsync(Guid userIdResquest);
+        
+      
     }
 }
