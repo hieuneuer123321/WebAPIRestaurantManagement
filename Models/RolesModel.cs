@@ -7,7 +7,7 @@ namespace WebAPIRestaurantManagement.Models
     public class RolesModel:BaseModel
     {
         [PrimaryKey("role_id", false)]
-        public int RoleId { get; set; }
+        public Guid RoleId { get; set; }
         [Column("role_name")]
         public string RoleName { get; set; }
         [Column("description")]

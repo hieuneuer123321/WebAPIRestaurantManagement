@@ -40,9 +40,9 @@ namespace WebAPIRestaurantManagement.Controllers
         /// <returns></returns>
         [HttpGet("GetTableById")]
 
-        public async Task<ActionResult> GetTableById(int TableId)
+        public async Task<ActionResult> GetTableById(string TableId)
         {
-            TableResponse result = await _tableServices.GetTableByIDAsync(TableId);
+            TableResponse result = await _tableServices.GetTableByIDAsync(Guid.Parse(TableId));
             return Ok(result);
         }
         [HttpPost("UpdateTable")]
@@ -52,9 +52,9 @@ namespace WebAPIRestaurantManagement.Controllers
             return result.IsValid ? Ok(result) : BadRequest(result);
         }
         [HttpPost("DeleteTable")]
-        public async Task<ActionResult> DeleteTable(int requestID)
+        public async Task<ActionResult> DeleteTable(string requestID)
         {
-            ModelResponse result = await _tableServices.DeleteTableAsync(requestID);
+            ModelResponse result = await _tableServices.DeleteTableAsync(Guid.Parse(requestID));
             return result.IsValid ? Ok(result) : BadRequest(result);
         }
         [HttpPost("AddTable")]

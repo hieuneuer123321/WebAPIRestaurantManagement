@@ -189,8 +189,7 @@
             "name": "categoryId",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -256,8 +255,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "type": "integer",
-                  "format": "int32"
+                  "type": "string"
                 }
               }
             },
@@ -265,8 +263,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "type": "integer",
-                  "format": "int32"
+                  "type": "string"
                 }
               }
             },
@@ -274,8 +271,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "type": "integer",
-                  "format": "int32"
+                  "type": "string"
                 }
               }
             }
@@ -360,8 +356,7 @@
             "name": "MenuId",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -383,8 +378,7 @@
             "name": "MenuId",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -427,8 +421,7 @@
             "name": "roleId",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -511,8 +504,7 @@
             "name": "TableId",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -564,8 +556,7 @@
             "name": "requestID",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -653,8 +644,8 @@
         "type": "object",
         "properties": {
           "categoryId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           },
           "categoryName": {
             "type": "string",
@@ -681,8 +672,8 @@
         "type": "object",
         "properties": {
           "menuItemId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           },
           "menuName": {
             "type": "string",
@@ -693,8 +684,8 @@
             "format": "int64"
           },
           "category_id": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false
@@ -703,8 +694,8 @@
         "type": "object",
         "properties": {
           "table_id": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           },
           "table_Number": {
             "type": "string",
@@ -761,8 +752,8 @@
             "nullable": true
           },
           "roleId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           },
           "usernumber": {
             "type": "string",

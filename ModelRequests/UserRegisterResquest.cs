@@ -7,7 +7,7 @@
         public string Email { get; set; }
         public string FullName { get; set; }
         public string Phone { get; set; }
-        public int RoleId { get; set; }    
+        public Guid RoleId { get; set; }    
         public string Usernumber { get; set; }
         public DateOnly Create_day { get; set; }
         public bool Status { get; set; }

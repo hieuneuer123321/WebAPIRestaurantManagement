@@ -26,7 +26,7 @@ namespace WebAPIRestaurantManagement.Services.Roles
         {
             throw new NotImplementedException();
         }
-        public async Task<ModelDataResponse<List<RightResponse>>> GetRightByRoleIdAsync(int roleId)
+        public async Task<ModelDataResponse<List<RightResponse>>> GetRightByRoleIdAsync(string roleId)
         {
             ModelDataResponse<List<RightResponse>> result = new ModelDataResponse<List<RightResponse>>();
             List<SP_GetRightByRoleIdResponse> rightsSP = await _supabaseClientService.GetRightByRoleIdAsync(roleId);
@@ -60,9 +60,9 @@ namespace WebAPIRestaurantManagement.Services.Roles
             return result;
         }
 
-        public async Task<RolesResponse> GetRolesByIDAsync(int roleID)
+        public async Task<RolesResponse> GetRolesByIDAsync(Guid roleID)
         {
-            ModeledResponse<RolesModel> SupabaseResponse = await _clientSupabase.From<RolesModel>().Where(u => u.RoleId == roleID).Get();
+            ModeledResponse<RolesModel> SupabaseResponse = await _clientSupabase.From<RolesModel>().Where(u => u.RoleId ==  roleID).Get();
             RolesModel rolesModel = SupabaseResponse.Models.FirstOrDefault();
             RolesResponse roles = new RolesResponse()
             {

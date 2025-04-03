@@ -47,7 +47,7 @@ namespace WebAPIRestaurantManagement.Services.MenuItems
             return response;
         }
 
-        public async Task<ModelResponse> DeleteMenuItemsAsync(int menuId)
+        public async Task<ModelResponse> DeleteMenuItemsAsync(Guid menuId)
         {
             ModelResponse response = new ModelResponse();
             MenuItemsModel modelToDelete = new MenuItemsModel { MenuID = menuId }; // Tạo mô hình muốn xóa
@@ -68,7 +68,7 @@ namespace WebAPIRestaurantManagement.Services.MenuItems
             return response;
         }
 
-        public async Task<ModelDataPageResponse<List<MenuItemResponse>>> GetMenuItemsAsync(string search, List<int> category, int PageNumber, int PageSize, bool isPaging , bool isDescendPrice)
+        public async Task<ModelDataPageResponse<List<MenuItemResponse>>> GetMenuItemsAsync(string search, List<string> category, int PageNumber, int PageSize, bool isPaging , bool isDescendPrice)
         {
             // Lấy danh sách MenuItems từ Supabase
             ModeledResponse<MenuItemsModel> SupabaseResponseMenuItems = await _supabaseClient.From<MenuItemsModel>().Get();
@@ -86,7 +86,7 @@ namespace WebAPIRestaurantManagement.Services.MenuItems
             if (category!=null)
             {
                 if(category.Count > 0)
-                    SupabaseListMenuItems = SupabaseListMenuItems.Where(tb => category.Contains(tb.category_id)).ToList();
+                    SupabaseListMenuItems = SupabaseListMenuItems.Where(tb => category.Contains(tb.category_id.ToString())).ToList();
             }
 
             // Sử dụng Task.WhenAll để đợi các tác vụ bất đồng bộ
@@ -146,7 +146,7 @@ namespace WebAPIRestaurantManagement.Services.MenuItems
             }
             return response;
         }
-        public async Task<MenuItemResponse> GetMenuItemByCategoryIDAsync(int menuID)
+        public async Task<MenuItemResponse> GetMenuItemByCategoryIDAsync(Guid menuID)
         {
             // Khởi tạo đối tượng response để chứa kết quả
             MenuItemResponse menuResponse = new MenuItemResponse();

@@ -8,12 +8,12 @@ namespace WebAPIRestaurantManagement.Models
     public class MenuItemsModel :BaseModel
     {
         [PrimaryKey("menu_id", false)]
-        public int MenuID { get; set; }
+        public Guid MenuID { get; set; }
         [Column("name")]
         public string MenuName { get; set; }
         [Column("price")]
         public long Price { get; set; }
         [Column("category_id")]
-        public int category_id { get; set; }
+        public Guid category_id { get; set; }
     }
 }

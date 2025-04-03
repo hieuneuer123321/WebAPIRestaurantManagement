@@ -6,10 +6,10 @@ namespace WebAPIRestaurantManagement.Services.MenuItems
 {
     public interface IMenuItemServices
     {
-        Task<ModelDataPageResponse<List<MenuItemResponse>>> GetMenuItemsAsync(string search,List<int> category, int PageNumber, int PageSize, bool isPaging, bool isDescendPrice);
+        Task<ModelDataPageResponse<List<MenuItemResponse>>> GetMenuItemsAsync(string search,List<string> category, int PageNumber, int PageSize, bool isPaging, bool isDescendPrice);
         Task<ModelResponse> UpdateMenuItemsAsync(MenuItemRequests category);
         Task<ModelResponse> AddMenuItemsAsync(MenuItemRequests categoryRequest);
-        Task<ModelResponse> DeleteMenuItemsAsync(int menuId);
-        Task<MenuItemResponse> GetMenuItemByCategoryIDAsync(int menuID);
+        Task<ModelResponse> DeleteMenuItemsAsync(Guid menuId);
+        Task<MenuItemResponse> GetMenuItemByCategoryIDAsync(Guid menuID);
     }
 }

@@ -38,7 +38,7 @@ namespace WebAPIRestaurantManagement.Services.Tables
             return response;
         }
 
-        public async Task<ModelResponse> DeleteTableAsync(int tableId)
+        public async Task<ModelResponse> DeleteTableAsync(Guid tableId)
         {
             ModelResponse response = new ModelResponse();
             TableModel modelToDelete = new TableModel { Table_id = tableId }; // Tạo mô hình muốn xóa
@@ -87,7 +87,7 @@ namespace WebAPIRestaurantManagement.Services.Tables
             return result;
         }
 
-        public async Task<TableResponse> GetTableByIDAsync(int tableID)
+        public async Task<TableResponse> GetTableByIDAsync(Guid tableID)
         {
             // Khởi tạo đối tượng response để chứa kết quả
             TableResponse tableResponse = new TableResponse();

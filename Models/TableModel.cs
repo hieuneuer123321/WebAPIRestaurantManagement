@@ -7,7 +7,7 @@ namespace WebAPIRestaurantManagement.Models
     public class TableModel : BaseModel
     {
         [PrimaryKey("table_id", false)]
-        public int Table_id { get; set; }
+        public Guid Table_id { get; set; }
         [Column("table_number")]
         public string Table_Number { get; set; }
         [Column("capacity")]

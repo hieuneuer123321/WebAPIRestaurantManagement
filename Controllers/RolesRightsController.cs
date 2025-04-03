@@ -28,7 +28,7 @@ namespace WebAPIRestaurantManagement.Controllers
         }
         [HttpGet("GetRightByRole")]
 
-        public async Task<ActionResult> GetRightByRole(int roleId)
+        public async Task<ActionResult> GetRightByRole(string roleId)
         {
             ModelDataResponse<List<RightResponse>> result = await _roleServices.GetRightByRoleIdAsync(roleId);
             return Ok(result);

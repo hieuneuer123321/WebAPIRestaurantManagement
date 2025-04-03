@@ -4,7 +4,7 @@
         <name>WebAPIRestaurantManagement</name>
     </assembly>
     <members>
-        <member name="M:WebAPIRestaurantManagement.Controllers.CategoriesController.GetItemMenuByMenuId(System.Int32)">
+        <member name="M:WebAPIRestaurantManagement.Controllers.CategoriesController.GetItemMenuByMenuId(System.String)">
             <summary>
             Lấy 1 món ăn
             </summary>
@@ -22,7 +22,7 @@
             <param name="status"></param>
             <returns></returns>
         </member>
-        <member name="M:WebAPIRestaurantManagement.Controllers.TableController.GetTableById(System.Int32)">
+        <member name="M:WebAPIRestaurantManagement.Controllers.TableController.GetTableById(System.String)">
             <summary>
             Lấy thông tin 1 bàn
             </summary>

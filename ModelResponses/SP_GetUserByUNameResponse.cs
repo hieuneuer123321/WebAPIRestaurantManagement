@@ -6,10 +6,10 @@
         public Guid Uid { get; set; }      // Trường UID kiểu INT8 (long)
         public string NameUser { get; set; } // Trường NameUser kiểu varchar
         public string EmailUser { get; set; } // Trường EmailUser kiểu varchar
-        public int rolesUser { get; set; }
+        public Guid rolesUser { get; set; }
         
         public bool? Email_verifi {  get; set; }
-        public SP_GetUserByUNameResponse(Guid uid, string nameUser, string emailUser, string passUser, int userRole, bool? email_verifi)
+        public SP_GetUserByUNameResponse(Guid uid, string nameUser, string emailUser, string passUser, Guid userRole, bool? email_verifi)
         {
             Uid = uid;
             NameUser = nameUser;

@@ -9,7 +9,7 @@ namespace WebAPIRestaurantManagement.Services.CategoriesItems
         Task<ModelDataPageResponse<List<CategoriesResponse>>> GetCategoryItemsAsync(string search, int PageNumber, int PageSize, bool isPaging);
         Task<ModelResponse> UpdateCategoryItemsAsync(CategoriesResponse category);
         Task<ModelResponse> AddCategoryItemsAsync(string categoryName);
-        Task<ModelResponse> DeleteCategoryItemsAsync(int categoryId);
-        Task<CategoriesResponse> GetCategoryByCategoryIDAsync(int categoryID);
+        Task<ModelResponse> DeleteCategoryItemsAsync(Guid categoryId);
+        Task<CategoriesResponse> GetCategoryByCategoryIDAsync(Guid categoryID);
     }
 }

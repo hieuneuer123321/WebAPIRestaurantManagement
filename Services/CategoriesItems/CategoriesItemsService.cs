@@ -36,7 +36,7 @@ namespace WebAPIRestaurantManagement.Services.CategoriesItems
             result.items = resultCategoriesItemResponse;
             return result;
         }
-        public async Task<CategoriesResponse> GetCategoryByCategoryIDAsync(int categoryID)
+        public async Task<CategoriesResponse> GetCategoryByCategoryIDAsync(Guid categoryID)
         {
             // Khởi tạo đối tượng response để chứa kết quả
             CategoriesResponse categoriesResponse = new CategoriesResponse();
@@ -99,7 +99,7 @@ namespace WebAPIRestaurantManagement.Services.CategoriesItems
             }
             return response;
         }
-        public async Task<ModelResponse> DeleteCategoryItemsAsync(int categoryId)
+        public async Task<ModelResponse> DeleteCategoryItemsAsync(Guid categoryId)
         {
             ModelResponse response = new ModelResponse();
             CategoriesItemsModel modelToDelete = new CategoriesItemsModel { CategoryId = categoryId }; // Tạo mô hình muốn xóa

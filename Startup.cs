@@ -55,14 +55,6 @@ namespace WebAPIRestaurantManagement
             // 
             //User Manager Service
 
-            //---------------
-
-            //Adding Authentiation - JWT
-            ///// Connect DataBase Supabase
-            ///
-            // Tạo Supabase client cho dự án 1
-            //services.AddSingleton<Client>(provider => CreateSupabaseClient("RestaurantManagement"));
-            //services.AddSingleton<Client>(provider => CreateSupabaseClient("auth"));
             services.AddScoped<Client>(provider =>
             {
                 return new Client(
@@ -72,45 +64,10 @@ namespace WebAPIRestaurantManagement
                     {
                         AutoRefreshToken = true,
                         AutoConnectRealtime = true,
-                        Schema = "RestaurantManagement"
+                        Schema = "DBRestaurantManage"
                     });
             });
 
-            // Đăng ký Supabase Client cho schema 'restaurant_management'
-           
-            //var supabaseClient = new Client(
-            //        Configuration["Authentication:SUPABASE_URL"],  // Thay bằng URL của bạn
-            //        Configuration["Authentication:SUPABASE_KEY"],  // API Key của bạn
-            //        new SupabaseOptions
-            //        {
-            //            AutoRefreshToken = true,
-            //            AutoConnectRealtime = true,
-            //            Schema = "RestaurantManagement"
-            //        });
-            //var authSupabaseClient = new Client(
-            //       Configuration["Authentication:SUPABASE_URL"],  // Thay bằng URL của bạn
-            //       Configuration["Authentication:SUPABASE_KEY"],  // API Key của bạn
-            //       new SupabaseOptions
-            //       {
-            //           AutoRefreshToken = true,
-            //           AutoConnectRealtime = true,
-            //           Schema = "auth"
-            //       });
-
-            ////// Thêm vào DI container
-            //services.AddSingleton(supabaseClient);
-            //services.AddSingleton(authSupabaseClient);
-
-            //services.AddScoped<Supabase.Client>(_ =>
-            //    new Supabase.Client(
-            //        Configuration["Authentication:SUPABASE_URL"],  // Thay bằng URL của bạn
-            //        Configuration["Authentication:SUPABASE_KEY"],  // API Key của bạn
-            //        new SupabaseOptions
-            //        {
-            //            AutoRefreshToken = true,
-            //            AutoConnectRealtime = true,
-            //            Schema = "QLSinhVien"
-            //        }));
             // Cấu hình xác thực JWT
             services.AddAuthentication()
                 .AddJwtBearer(options =>

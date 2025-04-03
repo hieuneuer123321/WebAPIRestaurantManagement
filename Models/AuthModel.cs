@@ -7,7 +7,7 @@ namespace WebAPIRestaurantManagement.Models
     public class AuthModel:BaseModel
     {
         [PrimaryKey("id", false)]
-        public int auth_id { get; set; }
+        public Guid auth_id { get; set; }
         [Column("email")]
         public string auth_email { get; set; }
       

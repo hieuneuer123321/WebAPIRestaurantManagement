@@ -24,7 +24,7 @@ namespace WebAPIRestaurantManagement.Services.SupabaseClient
             try
             {
                 var response = await _supabaseClient
-                .Rpc(StoreProcedureSupabase.GetUserByUsername, new { uname = username });
+                .Rpc(StoreProcedureSupabase.GetUserByUsername, new { uname = (username) });
 
                 // Kiểm tra mã trạng thái của phản hồi
                 if (response.ResponseMessage?.IsSuccessStatusCode == true)
@@ -59,13 +59,13 @@ namespace WebAPIRestaurantManagement.Services.SupabaseClient
             }
             // Gọi stored procedure getUserByUsername từ Supabase  
         }
-        public async Task<List<SP_GetRightByRoleIdResponse>> GetRightByRoleIdAsync(int roleIdResquest)
+        public async Task<List<SP_GetRightByRoleIdResponse>> GetRightByRoleIdAsync(string roleIdResquest)
         {
             try
             {
                 // Gọi stored procedure getUserByUsername từ Supabase
                 var response = await _supabaseClient
-                    .Rpc(StoreProcedureSupabase.GetRightByRoleId, new { roleid = roleIdResquest });
+                    .Rpc(StoreProcedureSupabase.GetRightByRoleId, new { roleid = Guid.Parse(roleIdResquest) });
 
                 // Kiểm tra mã trạng thái của phản hồi
                 if (response.ResponseMessage?.IsSuccessStatusCode == true)

@@ -42,13 +42,13 @@ namespace WebAPIRestaurantManagement.Controllers
             return result.IsValid ? Ok(result) : BadRequest(result);
         }
         [HttpPost("DeleteCategories")]
-        public async Task<ActionResult> DeleteCategoryItems(int categoryId)
+        public async Task<ActionResult> DeleteCategoryItems(string categoryId)
         {
-            ModelResponse result = await _categoriesItemsServices.DeleteCategoryItemsAsync(categoryId);
+            ModelResponse result = await _categoriesItemsServices.DeleteCategoryItemsAsync(Guid.Parse(categoryId));
             return result.IsValid ? Ok(result) : BadRequest(result);
         }
         [HttpPost("GetItemsMenu")]
-        public async Task<ActionResult> GetItemsMenu(string search = "" , int PageNumber = 1, int PageSize = 10, bool isPaging = false, bool isDecPrice = true, List<int> categoryItem = null)
+        public async Task<ActionResult> GetItemsMenu(string search = "" , int PageNumber = 1, int PageSize = 10, bool isPaging = false, bool isDecPrice = true, List<string> categoryItem = null)
         {
             ModelDataPageResponse<List<MenuItemResponse>> result = await _menuItemServices.GetMenuItemsAsync(search = "", categoryItem, PageNumber, PageSize, isPaging, isDecPrice = true);
             return Ok(result);
@@ -66,9 +66,9 @@ namespace WebAPIRestaurantManagement.Controllers
             return result.IsValid ? Ok(result) : BadRequest(result);
         }
         [HttpPost("DeleteMenuItem")]
-        public async Task<ActionResult> DeleteMenuItem(int MenuId)
+        public async Task<ActionResult> DeleteMenuItem(string MenuId)
         {
-            ModelResponse result = await _menuItemServices.DeleteMenuItemsAsync(MenuId);
+            ModelResponse result = await _menuItemServices.DeleteMenuItemsAsync(Guid.Parse(MenuId));
             return result.IsValid ? Ok(result) : BadRequest(result);
         }
         /// <summary>
@@ -78,9 +78,9 @@ namespace WebAPIRestaurantManagement.Controllers
         /// <returns></returns>
         [HttpPost("GetItemMenuByMenuId")]
       
-        public async Task<ActionResult> GetItemMenuByMenuId(int MenuId)
+        public async Task<ActionResult> GetItemMenuByMenuId(string MenuId)
         {
-            MenuItemResponse result = await _menuItemServices.GetMenuItemByCategoryIDAsync(MenuId);
+            MenuItemResponse result = await _menuItemServices.GetMenuItemByCategoryIDAsync(Guid.Parse(MenuId));
             return Ok(result);
         }
     }
